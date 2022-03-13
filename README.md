@@ -8,13 +8,31 @@ Oof
 Your Bot Father Setting to put
 
 ```
+start - Bot Alive  🚀
 
+help - Help You  📜
 
-preset - Your Preset Setting
+eval - For Checking Cmds  〽️ 
 
-resolution - Your Resolution Setting
+crf - Your CRF Helper  👾
 
-audio - Your Audio Setting
+codec - Your Codec Setting  🗳
+
+resolution - Your Resolution Setting  📊
+
+preset - Your Preset Setting  ⚡️
+
+audio - Your Audio Setting   🔊
+
+settings -  Current Ffmpeg Settings ⚙
+
+restart - Bot Rebooting  ♻️
+
+cancel - last one cancel  ❌
+
+clear - cleared Queue ... ☢
+
+ping - See My ping Time ⏳
 
 
 
