@@ -87,7 +87,7 @@ async def incoming_start_message_f(bot, update):
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton('Owner 👨‍💻', url='https://t.me/cmd_rulf')
+                    InlineKeyboardButton('👨‍💻 OWNER 👨‍💻', url='https://t.me/cmd_rulf')
                 ]
             ]
         ),
@@ -229,7 +229,7 @@ async def incoming_compress_message_f(update):
       if( video is None ):
         try:
           await sent_message.edit_text(
-            text="Download stopped"
+            text="Download stopped 🛑"
           )
           chat_id = LOG_CHANNEL
           utc_now = datetime.datetime.utcnow()
