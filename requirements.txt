@@ -1,9 +1,9 @@
-aiohttp
 Pillow
 psutil
 hachoir
 tgcrypto
-pyrogram
+pyrogram==1.4
 motor
 https://github.com/Tinche/aiofiles/archive/master.zip
 dnspython
+ffmpeg
