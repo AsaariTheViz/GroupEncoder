@@ -99,7 +99,8 @@ if __name__ == "__main__" :
     async def settings(app, message):
         if message.from_user.id in AUTH_USERS:
             await message.reply_text(f"<b>The current settings will be added to your video file ⚙️:</b>\n\n<b>➥ Codec</b> : {codec[0]} \n<b>➥ Crf</b> : {crf[0]} \n<b>➥ Resolution</b> : {resolution[0]} \n<b>➥ Preset</b> : {preset[0]} \n<b>➥ Audio Bitrates</b> : {audio_b[0]} \n\n<i><b>🥇 The ability to change Settings is only for Admin</b></i>")
-            
+        else:
+            await message.reply_text("Admin Only 🔒")
             
                
     @app.on_message(filters.incoming & filters.command(["resolution", f"resolution@{BOT_USERNAME}"]))
@@ -161,7 +162,9 @@ if __name__ == "__main__" :
         if message.from_user.id in AUTH_USERS:
             await message.reply_text("Restarting... ♻️")
             quit(1)
-        
+        else:
+            await message.reply_text("Admin Only 🔒")
+            
     @app.on_message(filters.incoming & filters.command(["clear", f"clear@{BOT_USERNAME}"]))
     async def restarter(app, message):
         data.clear()
