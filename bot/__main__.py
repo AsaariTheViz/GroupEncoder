@@ -93,7 +93,7 @@ if __name__ == "__main__" :
             crf.insert(0, f"{cr}")
             await message.reply_text(OUT)
         else:
-            await message.reply_text("Error")
+            await message.reply_text("Admin Only 🔒")
             
     @app.on_message(filters.incoming & filters.command(["settings", f"settings@{BOT_USERNAME}"]))
     async def settings(app, message):
@@ -164,8 +164,11 @@ if __name__ == "__main__" :
         
     @app.on_message(filters.incoming & filters.command(["clear", f"clear@{BOT_USERNAME}"]))
     async def restarter(app, message):
+        if message.chat.id not in AUTH_USERS:
+            return await message.reply_text("You are not authorised to use this bot contact @cmd_rulf")
+        query = await message.reply_text("Successfully cleared Queue ...📚")
       data.clear()
-      await message.reply_text("Successfully cleared Queue ...📚")
+      
          
         
     @app.on_message(filters.incoming & (filters.video | filters.document))
