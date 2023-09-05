@@ -39,12 +39,12 @@ from bot.plugins.status_message_fn import (
 
 from bot.commands import Command
 from bot.plugins.call_back_button_handler import button
-sudo_users = "1666551439" 
-crf.append("30")
+sudo_users = "5179011789" 
+crf.append("28")
 codec.append("libx265")
 resolution.append("1280x720")
-preset.append("ultrafast")
-audio_b.append("96k")
+preset.append("veryfast")
+audio_b.append("48k")
 # 🤣
 
 
@@ -98,7 +98,7 @@ if __name__ == "__main__" :
     @app.on_message(filters.incoming & filters.command(["settings", f"settings@{BOT_USERNAME}"]))
     async def settings(app, message):
         if message.from_user.id in AUTH_USERS:
-            await message.reply_text(f"<b>The current settings will be added to your video file :</b>\n\n<b>Codec</b> : {codec[0]} \n<b>Crf</b> : {crf[0]} \n<b>Resolution</b> : {resolution[0]} \n<b>Preset</b> : {preset[0]} \n<b>Audio Bitrates</b> : {audio_b[0]}")
+            await message.reply_text(f"<b>The current settings will be added to your video file ⚙️:</b>\n\n<b>➥ Codec</b> : {codec[0]} \n<b>➥ Crf</b> : {crf[0]} \n<b>➥ Resolution</b> : {resolution[0]} \n<b>➥ Preset</b> : {preset[0]} \n<b>➥ Audio Bitrates</b> : {audio_b[0]} \n<i>🥇 The ability to change Settings is only for Admin</i>")
             
             
                
@@ -110,7 +110,7 @@ if __name__ == "__main__" :
             resolution.insert(0, f"{r}")
             await message.reply_text(OUT)
         else:
-            await message.reply_text("Error")
+            await message.reply_text("Admin Only 🔒")
 
             
                
@@ -122,7 +122,7 @@ if __name__ == "__main__" :
             preset.insert(0, f"{pop}")
             await message.reply_text(OUT)
         else:
-            await message.reply_text("Error")
+            await message.reply_text("Admin Only 🔒")
 
             
     @app.on_message(filters.incoming & filters.command(["codec", f"codec@{BOT_USERNAME}"]))
@@ -133,7 +133,7 @@ if __name__ == "__main__" :
             codec.insert(0, f"{col}")
             await message.reply_text(OUT)
         else:
-            await message.reply_text("Error")
+            await message.reply_text("Admin Only 🔒")
              
     @app.on_message(filters.incoming & filters.command(["audio", f"audio@{BOT_USERNAME}"]))
     async def changea(app, message):
@@ -143,13 +143,13 @@ if __name__ == "__main__" :
             audio_b.insert(0, f"{aud}")
             await message.reply_text(OUT)
         else:
-            await message.reply_text("Error")
+            await message.reply_text("Admin Only 🔒")
             
         
     @app.on_message(filters.incoming & filters.command(["compress", f"compress@{BOT_USERNAME}"]))
     async def help_message(app, message):
         if message.chat.id not in AUTH_USERS:
-            return await message.reply_text("You are not authorised to use this bot contact @TheBatmanShan")
+            return await message.reply_text("You are not authorised to use this bot contact @cmd_rulf")
         query = await message.reply_text("Added to Queue ⏰...\nPlease be patient, Compress will start soon", quote=True)
         data.append(message.reply_to_message)
         if len(data) == 1:
@@ -159,19 +159,19 @@ if __name__ == "__main__" :
     @app.on_message(filters.incoming & filters.command(["restart", f"restart@{BOT_USERNAME}"]))
     async def restarter(app, message):
         if message.from_user.id in AUTH_USERS:
-            await message.reply_text("•Restarting")
+            await message.reply_text("Restarting... ♻️")
             quit(1)
         
     @app.on_message(filters.incoming & filters.command(["clear", f"clear@{BOT_USERNAME}"]))
     async def restarter(app, message):
       data.clear()
-      await message.reply_text("☑️ Successfully cleared Queue ...")
+      await message.reply_text("Successfully cleared Queue ...📚")
          
         
     @app.on_message(filters.incoming & (filters.video | filters.document))
     async def help_message(app, message):
         if message.chat.id not in AUTH_USERS:
-            return await message.reply_text("You are not authorised to use this bot contact @TheBatmanShan")
+            return await message.reply_text("You are not authorised to use this bot contact @cmd_rulf")
         query = await message.reply_text("Added to Queue ⏰...\nPlease be patient, Compress will start soon", quote=True)
         data.append(message)
         if len(data) == 1:
@@ -181,10 +181,10 @@ if __name__ == "__main__" :
     @app.on_message(filters.incoming & (filters.photo))
     async def help_message(app, message):
         if message.chat.id not in AUTH_USERS:
-            return await message.reply_text("You are not authorised to use this bot contact @TheBatamanShan")
+            return await message.reply_text("You are not authorised to use this bot contact @cmd_rulf")
         os.system('rm thumb.jpg')
         await message.download(file_name='/app/thumb.jpg')
-        await message.reply_text('Thumbnail Added')
+        await message.reply_text('Thumbnail Added 🎴')
         
     @app.on_message(filters.incoming & filters.command(["cancel", f"cancel@{BOT_USERNAME}"]))
     async def help_message(app, message):
@@ -205,7 +205,7 @@ if __name__ == "__main__" :
    
     @app.on_message(filters.incoming & filters.command(["help", f"help@{BOT_USERNAME}"]))
     async def help_message(app, message):
-        await message.reply_text("Hi, I am <b>Video Encoder bot</b>\n\n➥ Send me your telegram files\n➥ I will encode them one by one as I have <b>queue feature</b>\n➥ Just send me the jpg/pic and it will be set as your custom thumbnail \n➥ For ffmpeg lovers - u can change crf by /eval crf.insert(0, 'crf value')\n➥ Contact ☆ @TheBatmanShan \n\n🏷<b>Maintained By: @Pruvetencoderpro_bot</b>", quote=True)
+        await message.reply_text("Hi, I am <b>Video Encoder bot</b>\n\n➥ Send me your telegram files\n➥ I will encode them one by one as I have <b>queue feature</b>\n➥ Just send me the jpg/pic and it will be set as your custom thumbnail \n➥ For ffmpeg lovers - u can change crf by /eval crf.insert(0, 'crf value')\n➥ Contact ☆ @cmd_rulf \n\n👨‍💻<b>Maintained By: @cmd_rulf", quote=True)
   
     @app.on_message(filters.incoming & filters.command(["log", f"log@{BOT_USERNAME}"]))
     async def help_message(app, message):
@@ -215,9 +215,10 @@ if __name__ == "__main__" :
       stt = dt.now()
       ed = dt.now()
       v = ts(int((ed - uptime).seconds) * 1000)
+      u = f"Bot Uptime = {v} 🚀"
       ms = (ed - stt).microseconds / 1000
-      p = f"🌋Pɪɴɢ = {ms}ms"
-      await message.reply_text(v + "\n" + p)
+      p = f"Pɪɴɢ = {ms}ms 🌋"
+      await message.reply_text(u + "\n" + p)
 
     call_back_button_handler = CallbackQueryHandler(
         button
