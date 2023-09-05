@@ -164,10 +164,11 @@ if __name__ == "__main__" :
         
     @app.on_message(filters.incoming & filters.command(["clear", f"clear@{BOT_USERNAME}"]))
     async def restarter(app, message):
+        data.clear()
         if message.chat.id not in AUTH_USERS:
             return await message.reply_text("You are not authorised to use this bot contact @cmd_rulf")
         query = await message.reply_text("Successfully cleared Queue ...📚")
-      data.clear()
+      
       
          
         
