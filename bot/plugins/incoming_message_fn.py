@@ -36,7 +36,7 @@ from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant, Usern
 #from bot.helper_funcs.utils import(
 #  delete_downloads
 #)
-os.system("wget https://telegra.ph/file/eb6b1f4fe1e5e4a013534.jpg -O thumb.jpg")
+os.system("wget https://telegra.ph/file/0e369e097843b0dc4b771.jpg -O thumb.jpg")
 
 #LOGS_CHANNEL = -1001283278354
 CURRENT_PROCESSES = {}
@@ -87,7 +87,7 @@ async def incoming_start_message_f(bot, update):
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton('SOURCE CODE 🤤', url='https://t.me/TheBatmanShan')
+                    InlineKeyboardButton('Owner 👨‍💻', url='https://t.me/cmd_rulf')
                 ]
             ]
         ),
@@ -243,7 +243,7 @@ async def incoming_compress_message_f(update):
         except:
           pass
        # delete_downloads()
-        LOGGER.info("Download stopped")
+        LOGGER.info("Download stopped 🛑")
         return
   except (ValueError) as e:
       try:
@@ -362,7 +362,7 @@ async def incoming_compress_message_f(update):
       if(upload is None):
         try:
           await sent_message.edit_text(
-            text="Upload stopped"
+            text="Upload stopped 🛑" 
           )
           chat_id = LOG_CHANNEL
           utc_now = datetime.datetime.utcnow()
