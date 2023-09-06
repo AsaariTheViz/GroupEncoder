@@ -1,6 +1,6 @@
 # oof
 from datetime import datetime as dt
-import os, asyncio, anitopy, datetime, subprocess, time, pyrogram, math, re, psutil, signal, platform
+import os, asyncio, datetime, subprocess, time, pyrogram, math, re, psutil, signal, platform
 from bot import (
     APP_ID,
     API_HASH,
