@@ -45,14 +45,77 @@ async def add_task(message: Message):
         LOGGER.info(e)  
     await on_task_complete()
 
-async def sysinfo(message: Message):
-    total, used, free, disk= disk_usage('/')
-    total = hbs(total)
-    free = hbs(free)
-    memory = virtual_memory()
-    mem_p = memory.percent
-    mem_t = hbs(memory.total)
-    mem_a = hbs(memory.available)
-    mem_u = hbs(memory.used)
-    await message.reply_text(f"**OS**: {platform.system()}\n**Version:** {platform.release()}\n**Arch:** {platform.architecture()}\n**Total Disk Space:** {total}\n**Free:** {free}\n**Memory Total:** {mem_t}\n**Memory Free:** {mem_a}\n**Memory Used:** {mem_u}\n")
+async def sysinfo(e):
+    message = await e.reply_text(
+        "🚀 **Getting System Information...**",
+        quote=True)
+    start_time = time.monotonic()
+    last_content = None
 
+    os_info = f"**Operating System:** {platform.system()} {platform.release()} ({platform.machine()})\n\n"
+    os_info += "".join(["━"] * 21) + "\n"
+
+    while time.monotonic() - start_time <= 137:
+        cpu_usage = psutil.cpu_percent(percpu=True)
+        cpu_freq = psutil.cpu_freq()
+        cpu_count = psutil.cpu_count(logical=False)
+        cpu_count_logical = psutil.cpu_count(logical=True)
+        cpu_count_virtual = cpu_count_logical - cpu_count
+        ram_stats = psutil.virtual_memory()
+        disk = psutil.disk_usage('/')
+        dl_size = psutil.net_io_counters().bytes_recv
+        ul_size = psutil.net_io_counters().bytes_sent
+
+        cpu_bar = ['⬢' * int(percent / 10) + '⬡' * (10 - int(percent / 10)) for percent in cpu_usage]
+        freq_current = f"{round(cpu_freq.current / 1000, 2)} GHz"
+        if cpu_freq.min > 0 and cpu_freq.max > 0:
+            freq_min = f"{round(cpu_freq.min / 1000, 2)} GHz"
+            freq_max = f"{round(cpu_freq.max / 1000, 2)} GHz"
+            freq_info = f"**CPU Frequency:** {freq_current} (**Min:** {freq_min}, **Max:** {freq_max})\n\n"
+        else:
+            freq_info = f"🖥️ **CPU Frequency:** {freq_current}\n\n"
+
+        ram_perc = int(ram_stats.percent)
+        ram_used = psutil._common.bytes2human(ram_stats.used)
+        ram_total = psutil._common.bytes2human(ram_stats.total)
+        ram_bar = '▪️' * int(ram_perc / 10) + '▫️' * (10 - int(ram_perc / 10))
+        if ram_perc > 80:
+            ram_emoji = "‼️"
+        elif ram_perc > 20:
+            ram_emoji = "🚀"
+        else:
+            ram_emoji = "🎮"
+        ram_info = f"{ram_emoji} **RAM Usage:** {ram_perc}%\n[{ram_bar}]\n**Used:** {ram_used} **of** {ram_total}\n**Free :**  {psutil._common.bytes2human(ram_stats.available)}\n"
+
+        disk_perc = int(disk.percent)
+        disk_used = psutil._common.bytes2human(disk.used)
+        disk_total = psutil._common.bytes2human(disk.total)
+        disk_bar = '▪️' * int(disk_perc / 10) + '▫️' * (10 - int(disk_perc / 10))
+        disk_info = f"💾 **Disk Usage:** {disk_perc}%\n[{disk_bar}]\n**Used:** {disk_used} **of** {disk_total}\n**Free :**  {psutil._common.bytes2human(disk.free)}\n"
+
+        sys_info = f"{os_info}{freq_info}"
+        for i, percent in enumerate(cpu_usage[:cpu_count]):
+            if cpu_count > 9 and i < 9:
+                core_num = f"0{i+1}"
+            else:
+                core_num = str(i+1)
+            sys_info += f"[{cpu_bar[i]}] **Core {core_num}:** {percent:.1f}%\n"
+        sys_info += f"\n\t◉ **Physical Cores:** {cpu_count}\n"
+        if cpu_count_virtual > 0:
+            sys_info += f"\t◉ **Logical Cores:** {cpu_count_virtual}\n"
+        else:
+            sys_info += ""
+        sys_info += "".join(["━"] * 21) + "\n"
+        sys_info += ram_info
+        sys_info += "".join(["━"] * 21) + "\n"
+        sys_info += disk_info
+        sys_info += "".join(["━"] * 21) + "\n"
+        sys_info += f"🔻 **DL :** {psutil._common.bytes2human(dl_size)} **|** 🔺 **UL :** {psutil._common.bytes2human(ul_size)}"
+
+        if sys_info != last_content:
+            await message.edit_text(sys_info)
+            last_content = sys_info
+
+        await asyncio.sleep(3)
+
+    await message.edit_text("🎯 **Time Limit Reached!**")
