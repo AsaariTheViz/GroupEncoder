@@ -12,6 +12,7 @@ import os
 from bot import data
 from bot.plugins.incoming_message_fn import incoming_compress_message_f
 from pyrogram.types import Message
+from psutil import disk_usage, cpu_percent, virtual_memory, Process as psprocess
 
 
 def checkKey(dict, key):
@@ -32,3 +33,15 @@ async def add_task(message: Message):
     except Exception as e:
         LOGGER.info(e)  
     await on_task_complete()
+
+async def sysinfo(e):
+    total, used, free, disk= disk_usage('/')
+    total = hbs(total)
+    free = hbs(free)
+    memory = virtual_memory()
+    mem_p = memory.percent
+    mem_t = hbs(memory.total)
+    mem_a = hbs(memory.available)
+    mem_u = hbs(memory.used)
+    await e.reply_text(f"**OS:** {platform.system()}\n**Version:** {platform.release()}\n**Arch:** {platform.architecture()}\n**Total Disk Space:** {total}\n**Free:** {free}\n**Memory Total:** {mem_t}\n**Memory Free:** {mem_a}\n**Memory Used:** {mem_u}\n")
+
