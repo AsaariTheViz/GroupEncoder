@@ -47,12 +47,12 @@ async def add_task(message: Message):
 
 async def sysinfo(e):
     message = await e.reply_text(
-        "🚀 **Getting System Information...**",
+        "🚀 <b>Getting System Information...</b>",
         quote=True)
     start_time = time.monotonic()
     last_content = None
 
-    os_info = f"**Operating System:** {platform.system()} {platform.release()} ({platform.machine()})\n\n"
+    os_info = f"<b>Operating System:</b> {platform.system()} {platform.release()} ({platform.machine()})\n\n"
     os_info += "".join(["━"] * 21) + "\n"
 
     while time.monotonic() - start_time <= 137:
@@ -71,9 +71,9 @@ async def sysinfo(e):
         if cpu_freq.min > 0 and cpu_freq.max > 0:
             freq_min = f"{round(cpu_freq.min / 1000, 2)} GHz"
             freq_max = f"{round(cpu_freq.max / 1000, 2)} GHz"
-            freq_info = f"**CPU Frequency:** {freq_current} (**Min:** {freq_min}, **Max:** {freq_max})\n\n"
+            freq_info = f"<b>CPU Frequency:</b> {freq_current} (<b>Min:</b> {freq_min}, <b>Max:</b> {freq_max})\n\n"
         else:
-            freq_info = f"🖥️ **CPU Frequency:** {freq_current}\n\n"
+            freq_info = f"🖥️ <b>CPU Frequency:</b> {freq_current}\n\n"
 
         ram_perc = int(ram_stats.percent)
         ram_used = psutil._common.bytes2human(ram_stats.used)
@@ -85,13 +85,13 @@ async def sysinfo(e):
             ram_emoji = "🚀"
         else:
             ram_emoji = "🎮"
-        ram_info = f"{ram_emoji} **RAM Usage:** {ram_perc}%\n[{ram_bar}]\n**Used:** {ram_used} **of** {ram_total}\n**Free :**  {psutil._common.bytes2human(ram_stats.available)}\n"
+        ram_info = f"{ram_emoji} <b>RAM Usage:</b> {ram_perc}%\n[{ram_bar}]\n<b>Used:</b> {ram_used} <b>of</b> {ram_total}\n<b>Free :</b>  {psutil._common.bytes2human(ram_stats.available)}\n"
 
         disk_perc = int(disk.percent)
         disk_used = psutil._common.bytes2human(disk.used)
         disk_total = psutil._common.bytes2human(disk.total)
         disk_bar = '▪️' * int(disk_perc / 10) + '▫️' * (10 - int(disk_perc / 10))
-        disk_info = f"💾 **Disk Usage:** {disk_perc}%\n[{disk_bar}]\n**Used:** {disk_used} **of** {disk_total}\n**Free :**  {psutil._common.bytes2human(disk.free)}\n"
+        disk_info = f"💾 <b>Disk Usage:</b> {disk_perc}%\n[{disk_bar}]\n<b>Used:</b> {disk_used} <b>of</b> {disk_total}\n<b>Free :</b>  {psutil._common.bytes2human(disk.free)}\n"
 
         sys_info = f"{os_info}{freq_info}"
         for i, percent in enumerate(cpu_usage[:cpu_count]):
@@ -100,9 +100,9 @@ async def sysinfo(e):
             else:
                 core_num = str(i+1)
             sys_info += f"[{cpu_bar[i]}] **Core {core_num}:** {percent:.1f}%\n"
-        sys_info += f"\n\t◉ **Physical Cores:** {cpu_count}\n"
+        sys_info += f"\n\t◉ <b>Physical Cores:</b> {cpu_count}\n"
         if cpu_count_virtual > 0:
-            sys_info += f"\t◉ **Logical Cores:** {cpu_count_virtual}\n"
+            sys_info += f"\t◉ <b>Logical Cores:</b> {cpu_count_virtual}\n"
         else:
             sys_info += ""
         sys_info += "".join(["━"] * 21) + "\n"
@@ -110,7 +110,7 @@ async def sysinfo(e):
         sys_info += "".join(["━"] * 21) + "\n"
         sys_info += disk_info
         sys_info += "".join(["━"] * 21) + "\n"
-        sys_info += f"🔻 **DL :** {psutil._common.bytes2human(dl_size)} **|** 🔺 **UL :** {psutil._common.bytes2human(ul_size)}"
+        sys_info += f"🔻 <b>DL :</b> {psutil._common.bytes2human(dl_size)} <b>|</b> 🔺 <b>UL :</b> {psutil._common.bytes2human(ul_size)}"
 
         if sys_info != last_content:
             await message.edit_text(sys_info)
@@ -118,4 +118,4 @@ async def sysinfo(e):
 
         await asyncio.sleep(3)
 
-    await message.edit_text("🎯 **Time Limit Reached!**")
+    await message.edit_text("🎯 <b>Time Limit Reached!</b>")
