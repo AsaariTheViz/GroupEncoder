@@ -34,7 +34,7 @@ async def add_task(message: Message):
         LOGGER.info(e)  
     await on_task_complete()
 
-async def sysinfo(e):
+async def sysinfo(message: Message ):
     total, used, free, disk= disk_usage('/')
     total = hbs(total)
     free = hbs(free)
