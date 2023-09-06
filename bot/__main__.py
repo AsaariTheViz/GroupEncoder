@@ -107,7 +107,7 @@ if __name__ == "__main__" :
     @app.on_message(filters.incoming & filters.command(["sysinfo", f"sysinfo@{BOT_USERNAME}"]))
     async def help_message(app, message):
        if message.from_user.id in AUTH_USERS:
-           await message.reply_text(f"**OS:** {platform.system()}\n**Version:** {platform.release()}\n**Arch:** {platform.architecture()}\n**Total Disk Space:** {total}\n**Free:** {free}\n**Memory Total:** {mem_t}\n**Memory Free:** {mem_a}\n**Memory Used:** {mem_u}\n")
+           await sysinfo(message)
        else:
            await message.reply_text("Admin Only 🔒")
                
