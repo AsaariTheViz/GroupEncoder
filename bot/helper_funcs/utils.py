@@ -99,7 +99,7 @@ async def sysinfo(e):
                 core_num = f"0{i+1}"
             else:
                 core_num = str(i+1)
-            sys_info += f"[{cpu_bar[i]}] **Core {core_num}:** {percent:.1f}%\n"
+            sys_info += f"[{cpu_bar[i]}] <b>Core {core_num}:</b> {percent:.1f}%\n"
         sys_info += f"\n\t◉ <b>Physical Cores:</b> {cpu_count}\n"
         if cpu_count_virtual > 0:
             sys_info += f"\t◉ <b>Logical Cores:</b> {cpu_count_virtual}\n"
