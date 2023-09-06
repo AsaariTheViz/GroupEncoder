@@ -8,13 +8,10 @@ logging.basicConfig(
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 LOGGER = logging.getLogger(__name__)
 
-import os, asyncio, datetime, subprocess, time, pyrogram, math, re, psutil, signal, platform
-import json
-import re
+import os, asyncio, pyrogram, psutil, platform
 from bot import data
 from bot.plugins.incoming_message_fn import incoming_compress_message_f
 from pyrogram.types import Message
-from pathlib import Path
 from psutil import disk_usage, cpu_percent, virtual_memory, Process as psprocess
 
 
