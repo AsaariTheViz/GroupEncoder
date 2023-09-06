@@ -17,6 +17,7 @@ codec - Your Codec Setting  🗳
 resolution - Your Resolution Setting  📊
 preset - Your Preset Setting  ⚡️
 audio - Your Audio Setting   🔊
+sysinfo - Get System Information 📺
 settings -  Current Ffmpeg Settings ⚙
 restart - Bot Rebooting  ♻️
 cancel - last one cancel  ❌
