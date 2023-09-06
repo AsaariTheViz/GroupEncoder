@@ -1,6 +1,6 @@
 # oof
 from datetime import datetime as dt
-import os
+import os, platform
 from bot import (
     APP_ID,
     API_HASH,
