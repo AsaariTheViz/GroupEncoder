@@ -103,11 +103,11 @@ if __name__ == "__main__" :
             await message.reply_text("Admin Only 🔒")
 
     @app.on_message(filters.incoming & filters.command(["sysinfo", f"sysinfo@{BOT_USERNAME}"]))
-async def help_message(app, message):
-    if message.from_user.id in AUTH_USERS:
-      return await message.reply_text("**You Are Not Authorised To Use This Bot Contact @cmd_rulf")    
-    await sysinfo(message)
-            
+    async def help_message(app, message):
+       if message.from_user.id in AUTH_USERS:
+           await message.reply_text(f"**OS:** {platform.system()}\n**Version:** {platform.release()}\n**Arch:** {platform.architecture()}\n**Total Disk Space:** {total}\n**Free:** {free}\n**Memory Total:** {mem_t}\n**Memory Free:** {mem_a}\n**Memory Used:** {mem_u}\n")
+       else:
+           await message.reply_text("Admin Only 🔒")
                
     @app.on_message(filters.incoming & filters.command(["resolution", f"resolution@{BOT_USERNAME}"]))
     async def changer(app, message):
