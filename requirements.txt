@@ -8,10 +8,3 @@ https://github.com/Tinche/aiofiles/archive/master.zip
 dnspython
 ffmpeg
 asyncio
-pyromod
-anitopy
-hachoir
-aiohttp
-python-dotenv
-TgCrypto
-html_telegraph_poster
