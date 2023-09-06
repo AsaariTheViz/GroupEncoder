@@ -48,7 +48,7 @@ async def add_task(message: Message):
         LOGGER.info(e)  
     await on_task_complete()
 
-async def sysinfo(message: Message ):
+async def sysinfo(message: Message):
     total, used, free, disk= disk_usage('/')
     total = hbs(total)
     free = hbs(free)
@@ -57,5 +57,5 @@ async def sysinfo(message: Message ):
     mem_t = hbs(memory.total)
     mem_a = hbs(memory.available)
     mem_u = hbs(memory.used)
-    await e.reply_text(f"**OS:** {platform.system()}\n**Version:** {platform.release()}\n**Arch:** {platform.architecture()}\n**Total Disk Space:** {total}\n**Free:** {free}\n**Memory Total:** {mem_t}\n**Memory Free:** {mem_a}\n**Memory Used:** {mem_u}\n")
+    await message.reply_text(f"**OS:** {platform.system()}\n**Version:** {platform.release()}\n**Arch:** {platform.architecture()}\n**Total Disk Space:** {total}\n**Free:** {free}\n**Memory Total:** {mem_t}\n**Memory Free:** {mem_a}\n**Memory Used:** {mem_u}\n")
 
