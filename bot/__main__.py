@@ -20,7 +20,7 @@ from bot import (
     codec,
     watermark 
 )
-from bot.helper_funcs.utils import add_task, on_task_complete
+from bot.helper_funcs.utils import add_task, on_task_complete, sysinfo
 from pyrogram import Client, filters
 from pyrogram.handlers import MessageHandler, CallbackQueryHandler
 
@@ -101,6 +101,12 @@ if __name__ == "__main__" :
             await message.reply_text(f"<b>The current settings will be added to your video file ⚙️:</b>\n\n<b>➥ Codec</b> : {codec[0]} \n<b>➥ Crf</b> : {crf[0]} \n<b>➥ Resolution</b> : {resolution[0]} \n<b>➥ Preset</b> : {preset[0]} \n<b>➥ Audio Bitrates</b> : {audio_b[0]} \n\n<i><b>🥇 The ability to change Settings is only for Admin</b></i>")
         else:
             await message.reply_text("Admin Only 🔒")
+
+    @app.on_message(filters.incoming & filters.command(["sysinfo", f"sysinfo@{BOT_USERNAME}"]))
+async def help_message(app, message):
+    if message.from_user.id in AUTH_USERS:
+      return await message.reply_text("**You Are Not Authorised To Use This Bot Contact @cmd_rulf")    
+    await sysinfo(message)
             
                
     @app.on_message(filters.incoming & filters.command(["resolution", f"resolution@{BOT_USERNAME}"]))
