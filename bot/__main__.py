@@ -103,7 +103,7 @@ if __name__ == "__main__" :
             await message.reply_text("Admin Only 🔒")
 
     @app.on_message(filters.incoming & filters.command(["sysinfo", f"sysinfo@{BOT_USERNAME}"]))
-async def help_message(app, message):
+async def info_message(app, message):
     if message.from_user.id in AUTH_USERS:
       return await message.reply_text("**You Are Not Authorised To Use This Bot Contact @cmd_rulf")    
     await sysinfo(message)
